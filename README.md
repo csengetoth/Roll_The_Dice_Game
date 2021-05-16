@@ -1,6 +1,6 @@
 # Roll The Dice game
 
-The rolling dice game.
+This is the rolling dice game.
 
 ## Requirements
 

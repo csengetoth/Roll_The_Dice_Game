@@ -11,10 +11,9 @@ import javax.persistence.TypedQuery;
 import com.google.inject.persist.Transactional;
 
 /**
- * Generic JPA DAO class that provides JPA support for the entity class
- * specified.
+ * Generic JPA DAO class that provides JPA for the entity class.
  *
- * @param <T> the type of the entity class
+ * @param <T> the entity class type
  */
 public abstract class GenericJpaDao<T> {
 
@@ -22,9 +21,9 @@ public abstract class GenericJpaDao<T> {
     protected EntityManager entityManager;
 
     /**
-     * Constructs a {@code GenericJpaDao} object.
+     * Makes a {@code GenericJpaDao} object.
      *
-     * @param entityClass the {@link Class} object that represents the entity
+     * @param entityClass the {@link Class} object represents the entity
      *                    class
      */
     public GenericJpaDao(Class<T> entityClass) {
@@ -32,18 +31,18 @@ public abstract class GenericJpaDao<T> {
     }
 
     /**
-     * Returns the underlying {@link EntityManager} instance.
+     * Returns the basis {@link EntityManager} instance.
      *
-     * @return the underlying {@link EntityManager} instance
+     * @return the basis {@link EntityManager} instance
      */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
     /**
-     * Sets the underlying {@link EntityManager} instance.
+     * Sets the basis {@link EntityManager} instance.
      *
-     * @param entityManager the underlying {@link EntityManager} instance
+     * @param entityManager the basis {@link EntityManager} instance
      */
     @Inject
     public void setEntityManager(EntityManager entityManager) {
@@ -61,13 +60,13 @@ public abstract class GenericJpaDao<T> {
     }
 
     /**
-     * Returns the entity instance with the specified primary key from the
+     * Returns the entity instance with the given primary key from the
      * database. The method returns an empty {@link Optional} object when
      * the instance does not exists.
      *
-     * @param primaryKey the primary key to look for
+     * @param primaryKey the primary key
      * @return an {@link Optional} object wrapping the entity instance with
-     * the specified primary key
+     * the primary key
      */
     @Transactional
     public Optional<T> find(Object primaryKey) {

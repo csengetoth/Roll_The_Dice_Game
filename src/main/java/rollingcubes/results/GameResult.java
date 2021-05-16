@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.time.ZonedDateTime;
 
 /**
- * Class representing the result of a game played by a specific player.
+ * Class for printing the player's results.
  */
 @Data
 @NoArgsConstructor
@@ -24,29 +24,29 @@ public class GameResult {
     private Long id;
 
     /**
-     * The name of the player.
+     * Player's name.
      */
     @Column(nullable = false)
     private String player;
 
     /**
-     * Indicates whether the player has solved the puzzle.
+     * The player solved the game or not.
      */
     private boolean solved;
 
     /**
-     * The number of steps made by the player.
+     * The number of steps to solve the game by the player.
      */
     private int steps;
 
     /**
-     * The duration of the game.
+     * Tells, how much time it takes to solve the game.
      */
     @Column(nullable = false)
     private Duration duration;
 
     /**
-     * The timestamp when the result was saved.
+     * The date, when the game was played.
      */
     @Column(nullable = false)
     private ZonedDateTime created;

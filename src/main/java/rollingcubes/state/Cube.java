@@ -1,7 +1,7 @@
 package rollingcubes.state;
 
 /**
- * Class representing the empty space and the possible orientations of a cube.
+ * Class for representing the states of the dices and the empty place.
  */
 public enum  Cube {
 
@@ -14,9 +14,9 @@ public enum  Cube {
     CUBE6;
 
     /**
-     * The array defining the transitions between orientations when a cube is
-     * rolled. Rows correspond to cube orientations, columns correspond to
-     * directions.
+     * The array for telling which state conversions could be between the dices:
+     * whether is a given direction where the dice will be rolled to,
+     * which state it will get.
      */
     private static final int[][] T = {
             {0, 0, 0, 0},
@@ -31,10 +31,10 @@ public enum  Cube {
     /**
      * Returns the instance represented by the value specified.
      *
-     * @param value the value representing an instance
-     * @return the instance represented by the value specified
-     * @throws IllegalArgumentException if the value specified does not
-     * represent an instance
+     * @param value the value, which is a possible instance
+     * @return the value's instance
+     * @throws IllegalArgumentException if the value is not
+     * a possible instance
      */
     public static Cube of(int value) {
         if (value < 0 || value >= values().length) {
@@ -44,20 +44,20 @@ public enum  Cube {
     }
 
     /**
-     * Returns the integer value that represents this instance.
+     * Returns the value as an integer.
      *
-     * @return the integer value that represents this instance
+     * @return the integer of the instance
      */
     public int getValue() {
         return ordinal();
     }
 
     /**
-     * Rolls the cube to the direction specified.
+     * Rolls the dice to the given direction.
      *
-     * @param direction the direction to which the cube is rolled
-     * @return the cube rolled to the direction specified
-     * @throws UnsupportedOperationException if the method is invoked on the
+     * @param direction the direction where the dice will be rolled to.
+     * @return the dice, which we said to roll to.
+     * @throws UnsupportedOperationException if the method used on the
      * {@link #EMPTY} instance
      */
     public Cube rollTo(Direction direction) {

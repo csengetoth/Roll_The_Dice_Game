@@ -1,7 +1,7 @@
 package rollingcubes.state;
 
 /**
- * Enum representing the four cardinal directions.
+ * Enum for the possible four directions, where the dices can be rolled to.
  */
 public enum Direction {
 
@@ -19,35 +19,30 @@ public enum Direction {
     }
 
     /**
-     * Returns the change in the x-coordinate when moving a step in this
-     * direction.
+     * Returns the changed direction's x-coordinate.
      *
-     * @return the change in the x-coordinate when moving a step in this
-     * direction
+     * @return Returns the changed direction's x-coordinate.
      */
     public int getDx() {
         return dx;
     }
 
     /**
-     * Returns the change in the y-coordinate when moving a step in this
-     * direction.
+     * Returns the changed direction's y-coordinate.
      *
-     * @return the change in the y-coordinate when moving a step in this
-     * direction
+     * @return Returns the changed direction's y-coordinate.
      */
     public int getDy() {
         return dy;
     }
 
     /**
-     * Returns the direction that corresponds to the changes in the x-coordinate
-     * and the y-coordinate specified.
+     * Returns the possible direction depending on the x-coordinate and the y-coordinate.
      *
-     * @param dx the change in the x-coordinate
-     * @param dy the change in the y-coordinate
-     * @return the direction that corresponds to the changes in the x-coordinate
-     * and the y-coordinate specified
+     * @param dx dx the changed x-coordinate
+     * @param dy the changed y-coordinate
+     * @return Returns the possible direction depending on
+     * the x-coordinate and the y-coordinate.
      */
     public static Direction of(int dx, int dy) {
         for (Direction direction : values()) {

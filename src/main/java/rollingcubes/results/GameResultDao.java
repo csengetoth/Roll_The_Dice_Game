@@ -6,7 +6,7 @@ import util.jpa.GenericJpaDao;
 import java.util.List;
 
 /**
- * DAO class for the {@link GameResult} entity.
+ * DAO for the {@link GameResult} class entity.
  */
 public class GameResultDao extends GenericJpaDao<GameResult> {
 
@@ -15,12 +15,12 @@ public class GameResultDao extends GenericJpaDao<GameResult> {
     }
 
     /**
-     * Returns the list of {@code n} best results with respect to the time
-     * spent for solving the puzzle.
+     * The best {@code n} results according to how much time it takes to solve the game.
+     * The less time to solve the game, the better position the player gets.
      *
-     * @param n the maximum number of results to be returned
-     * @return the list of {@code n} best results with respect to the time
-     * spent for solving the puzzle
+     * @param n the limit of the rows presented in the result table
+     * @return the ordered list {@code n} of the best results
+     * The list ordered by the game's duration.
      */
     @Transactional
     public List<GameResult> findBest(int n) {

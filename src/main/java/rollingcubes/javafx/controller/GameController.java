@@ -89,8 +89,8 @@ public class GameController {
         stepsLabel.textProperty().bind(steps.asString());
         gameOver.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                log.info("Game is over");
-                log.debug("Saving result to database...");
+                log.info("End of the game");
+                log.debug("Writing score into the database...");
                 gameResultDao.persist(createGameResult());
                 stopWatchTimeline.stop();
             }
@@ -123,7 +123,7 @@ public class GameController {
     public void handleClickOnCube(MouseEvent mouseEvent) {
         int row = GridPane.getRowIndex((Node) mouseEvent.getSource());
         int col = GridPane.getColumnIndex((Node) mouseEvent.getSource());
-        log.debug("Cube ({}, {}) is pressed", row, col);
+        log.debug("Dice ({}, {}) is pressed", row, col);
         if (! gameState.isSolved() && gameState.canRollToEmptySpace(row, col)) {
             steps.set(steps.get() + 1);
             gameState.rollToEmptySpace(row, col);
@@ -140,7 +140,7 @@ public class GameController {
 
     public void handleResetButton(ActionEvent actionEvent)  {
         log.debug("{} is pressed", ((Button) actionEvent.getSource()).getText());
-        log.info("Resetting game...");
+        log.info("Creating new game...");
         stopWatchTimeline.stop();
         resetGame();
     }

@@ -6,14 +6,14 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Class representing the state of the puzzle.
+ * Class for the dices state representation.
  */
 @Data
 @Slf4j
 public class RollingCubesState implements Cloneable {
 
     /**
-     * The array representing the initial configuration of the tray.
+     * Array for representing the original state of the board.
      */
     public static final int[][] INITIAL = {
             {1, 1, 1},
@@ -22,7 +22,7 @@ public class RollingCubesState implements Cloneable {
     };
 
     /**
-     * The array representing a near-goal configuration of the tray.
+     * The array representing an instance of the possible goal state.
      */
     public static final int[][] NEAR_GOAL = {
             {1, 0, 2},
@@ -31,39 +31,39 @@ public class RollingCubesState implements Cloneable {
     };
 
     /**
-     * The array storing the current configuration of the tray.
+     * The array stores the actual state of the board.
      */
     @Setter(AccessLevel.NONE)
     private Cube[][] tray;
 
     /**
-     * The row of the empty space.
+     * The empty place's row.
      */
     @Setter(AccessLevel.NONE)
     private int emptyRow;
 
     /**
-     * The column of the empty space.
+     * The empty place's column.
      */
     @Setter(AccessLevel.NONE)
     private int emptyCol;
 
     /**
-     * Creates a {@code RollingCubesState} object representing the (original)
-     * initial state of the puzzle.
+     * Creates a {@code RollingCubesState} object representing the original state
+     * of the board.
      */
     public RollingCubesState() {
         this(INITIAL);
     }
 
     /**
-     * Creates a {@code RollingCubesState} object that is initialized it with
-     * the specified array.
+     * Creates a {@code RollingCubesState} object that is given by the
+     * starter array.
      *
-     * @param a an array of size 3&#xd7;3 representing the initial configuration
-     *          of the tray
-     * @throws IllegalArgumentException if the array does not represent a valid
-     *                                  configuration of the tray
+     * @param a an array in the size 3&#xd7;3 which is the
+     * starter array.
+     * @throws IllegalArgumentException if the array is not
+     * a valid instance of the board.
      */
     public RollingCubesState(int[][] a) {
         if (!isValidTray(a)) {
@@ -109,9 +109,9 @@ public class RollingCubesState implements Cloneable {
     }
 
     /**
-     * Checks whether the puzzle is solved.
+     * Checks if the game is solved or not.
      *
-     * @return {@code true} if the puzzle is solved, {@code false} otherwise
+     * @return {@code true} if the game is solved, {@code false} otherwise
      */
     public boolean isSolved() {
         for (Cube[] row : tray) {
@@ -125,13 +125,13 @@ public class RollingCubesState implements Cloneable {
     }
 
     /**
-     * Returns whether the cube at the specified position can be rolled to the
-     * empty space.
+     * Returns, if a dice in it's current position is able to roll to the
+     * empty place.
      *
-     * @param row the row of the cube to be rolled
-     * @param col the column of the cube to be rolled
-     * @return {@code true} if the cube at the specified position can be rolled
-     * to the empty space, {@code false} otherwise
+     * @param row the rolled cube's row
+     * @param col the rolled cube's column
+     * @return {@code true} if the cube is able to roll
+     * to the empty place, {@code false} otherwise
      */
     public boolean canRollToEmptySpace(int row, int col) {
         return 0 <= row && row <= 2 && 0 <= col && col <= 2 &&
@@ -139,15 +139,15 @@ public class RollingCubesState implements Cloneable {
     }
 
     /**
-     * Returns the direction to which the cube at the specified position is
-     * rolled to the empty space.
+     * Returns the direction where to cube is able to
+     * roll to; where the empty place is.
      *
-     * @param row the row of the cube to be rolled
-     * @param col the column of the cube to be rolled
-     * @return the direction to which the cube at the specified position is
-     * rolled to the empty space
-     * @throws IllegalArgumentException if the cube at the specified position
-     * can not be rolled to the empty space
+     * @param row the rolled cube's row
+     * @param col the rolled cube's column
+     * @return Returns the direction where to cube is able to
+     * roll to; where the empty place is.
+     * @throws IllegalArgumentException if the cube at its current position
+     * can not be rolled to
      */
     public Direction getRollDirection(int row, int col) {
         if (! canRollToEmptySpace(row, col)) {
@@ -157,16 +157,16 @@ public class RollingCubesState implements Cloneable {
     }
 
     /**
-     * Rolls the cube at the specified position to the empty space.
+     * Rolls the cube to the given direction, where the empty place is.
      *
-     * @param row the row of the cube to be rolled
-     * @param col the column of the cube to be rolled
-     * @throws IllegalArgumentException if the cube at the specified position
-     * can not be rolled to the empty space
+     * @param row the rolled cube's row
+     * @param col the rolled cube's column
+     * @throws IllegalArgumentException if the cube at its current position
+     * can not be rolled to
      */
     public void rollToEmptySpace(int row, int col) {
         Direction direction = getRollDirection(row, col);
-        log.info("Cube at ({},{}) is rolled to {}", row, col, direction);
+        log.info("Dice at ({},{}) is rolled to {}", row, col, direction);
         tray[emptyRow][emptyCol] = tray[row][col].rollTo(direction);
         tray[row][col] = Cube.EMPTY;
         emptyRow = row;

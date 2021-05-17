@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 18;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollingcubes.javafx.controller.GameController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 18;" styleClass="bodybg" stylesheets="@background2.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rollingcubes.javafx.controller.GameController">
    <center>
       <GridPane fx:id="gameGrid" prefHeight="510.0" prefWidth="510.0" style="-fx-background-color: #E0E0E0;" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -32,19 +33,19 @@
       </GridPane>
    </center>
    <right>
-      <VBox alignment="CENTER" spacing="20.0" style="-fx-font-size: 150%;" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="402.0" prefWidth="122.0" spacing="20.0" style="-fx-font-size: 150%;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="20.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Idő:" />
+            <Label prefHeight="0.0" prefWidth="51.0" text="Idő:" />
             <Label fx:id="stopWatchLabel" text="00:00:00">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Label text="Lépések:" />
-            <Label fx:id="stepsLabel" text="0" />
+            <Label alignment="TOP_CENTER" prefHeight="82.0" prefWidth="122.0" text="Lépések:" />
+            <Label fx:id="stepsLabel" alignment="TOP_CENTER" prefHeight="332.0" prefWidth="86.0" text="0" />
          </children>
       </VBox>
    </right>
@@ -63,7 +64,7 @@
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <top>
-      <Label fx:id="messageLabel" style="-fx-font-size: 150%;" text="Label" BorderPane.alignment="CENTER">
+      <Label fx:id="messageLabel" style="-fx-font-size: 150%;" text="Label" textFill="RED" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" />
          </BorderPane.margin>

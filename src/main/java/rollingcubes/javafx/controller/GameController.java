@@ -109,9 +109,9 @@ public class GameController {
     }
 
     private void displayGameState() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                ImageView view = (ImageView) gameGrid.getChildren().get(i * 3 + j);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                ImageView view = (ImageView) gameGrid.getChildren().get(i * 4 + j);
                 if (view.getImage() != null) {
                     log.trace("Image({}, {}) = {}", i, j, view.getImage().getUrl());
                 }

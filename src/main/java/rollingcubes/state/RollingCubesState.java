@@ -16,18 +16,20 @@ public class RollingCubesState implements Cloneable {
      * Array for representing the original state of the board.
      */
     public static final int[][] INITIAL = {
-            {1, 1, 1},
-            {1, 0, 1},
-            {1, 1, 1}
+            {1, 0, 1, 1},
+            {1, 1, 1, 1},
+            {1, 1, 1, 1},
+            {1, 1, 1, 1}
     };
 
     /**
      * The array representing an instance of the possible goal state.
      */
     public static final int[][] NEAR_GOAL = {
-            {1, 0, 2},
-            {3, 5, 2},
-            {6, 1, 5}
+            {1, 1, 1, 1},
+            {1, 1, 1, 1},
+            {1, 1, 1, 1},
+            {1, 0, 1, 1}
     };
 
     /**
@@ -73,12 +75,12 @@ public class RollingCubesState implements Cloneable {
     }
 
     private boolean isValidTray(int[][] a) {
-        if (a == null || a.length != 3) {
+        if (a == null || a.length != 4) {
             return false;
         }
         boolean foundEmpty = false;
         for (int[] row : a) {
-            if (row == null || row.length != 3) {
+            if (row == null || row.length != 4) {
                 return false;
             }
             for (int space : row) {
@@ -97,9 +99,9 @@ public class RollingCubesState implements Cloneable {
     }
 
     private void initTray(int[][] a) {
-        this.tray = new Cube[3][3];
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
+        this.tray = new Cube[4][4];
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 if ((this.tray[i][j] = Cube.of(a[i][j])) == Cube.EMPTY) {
                     emptyRow = i;
                     emptyCol = j;
@@ -116,7 +118,7 @@ public class RollingCubesState implements Cloneable {
     public boolean isSolved() {
         for (Cube[] row : tray) {
             for (Cube cube : row) {
-                if (cube != Cube.CUBE6 && cube != Cube.EMPTY) {
+                if (cube != Cube.CUBE2 && cube != Cube.EMPTY) {
                     return false;
                 }
             }
@@ -134,7 +136,7 @@ public class RollingCubesState implements Cloneable {
      * to the empty place, {@code false} otherwise
      */
     public boolean canRollToEmptySpace(int row, int col) {
-        return 0 <= row && row <= 2 && 0 <= col && col <= 2 &&
+        return 0 <= row && row <= 3 && 0 <= col && col <= 3 &&
                 Math.abs(emptyRow - row) + Math.abs(emptyCol - col) == 1;
     }
 
